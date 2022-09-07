@@ -14,18 +14,23 @@
 		506A847828C7D9B300DAFBB7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506A847728C7D9B300DAFBB7 /* AppDelegate.swift */; };
 		506A847A28C7D9B300DAFBB7 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506A847928C7D9B300DAFBB7 /* GameViewController.swift */; };
 		506A847D28C7D9B300DAFBB7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 506A847B28C7D9B300DAFBB7 /* Main.storyboard */; };
-		506A847F28C7D9B300DAFBB7 /* Shaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = 506A845C28C7D9B200DAFBB7 /* Shaders.metal */; };
-		506A848028C7D9B300DAFBB7 /* Shaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = 506A845C28C7D9B200DAFBB7 /* Shaders.metal */; };
 		506A848128C7D9B300DAFBB7 /* Renderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506A845D28C7D9B200DAFBB7 /* Renderer.swift */; };
 		506A848228C7D9B300DAFBB7 /* Renderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506A845D28C7D9B200DAFBB7 /* Renderer.swift */; };
 		506A848328C7D9B300DAFBB7 /* ShaderTypes.h in Resources */ = {isa = PBXBuildFile; fileRef = 506A845E28C7D9B200DAFBB7 /* ShaderTypes.h */; };
 		506A848428C7D9B300DAFBB7 /* ShaderTypes.h in Resources */ = {isa = PBXBuildFile; fileRef = 506A845E28C7D9B200DAFBB7 /* ShaderTypes.h */; };
 		506A848528C7D9B300DAFBB7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 506A845F28C7D9B300DAFBB7 /* Assets.xcassets */; };
 		506A848628C7D9B300DAFBB7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 506A845F28C7D9B300DAFBB7 /* Assets.xcassets */; };
+		506A849028C7E2F600DAFBB7 /* phong_shading.metal in Sources */ = {isa = PBXBuildFile; fileRef = 506A848F28C7E2F600DAFBB7 /* phong_shading.metal */; };
+		506A849128C7E2F600DAFBB7 /* phong_shading.metal in Sources */ = {isa = PBXBuildFile; fileRef = 506A848F28C7E2F600DAFBB7 /* phong_shading.metal */; };
+		506A849428C7E74600DAFBB7 /* RenderableMesh.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506A849328C7E74600DAFBB7 /* RenderableMesh.swift */; };
+		506A849528C7E74600DAFBB7 /* RenderableMesh.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506A849328C7E74600DAFBB7 /* RenderableMesh.swift */; };
+		506A849A28C7EFCB00DAFBB7 /* ArcballCamera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506A849928C7EFCB00DAFBB7 /* ArcballCamera.swift */; };
+		506A849B28C7EFCB00DAFBB7 /* ArcballCamera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506A849928C7EFCB00DAFBB7 /* ArcballCamera.swift */; };
+		506A849D28C8DC8800DAFBB7 /* TeapotRenderableMesh.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506A849C28C8DC8800DAFBB7 /* TeapotRenderableMesh.swift */; };
+		506A849E28C8DC8800DAFBB7 /* TeapotRenderableMesh.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506A849C28C8DC8800DAFBB7 /* TeapotRenderableMesh.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		506A845C28C7D9B200DAFBB7 /* Shaders.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = Shaders.metal; sourceTree = "<group>"; };
 		506A845D28C7D9B200DAFBB7 /* Renderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Renderer.swift; sourceTree = "<group>"; };
 		506A845E28C7D9B200DAFBB7 /* ShaderTypes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShaderTypes.h; sourceTree = "<group>"; };
 		506A845F28C7D9B300DAFBB7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -39,6 +44,10 @@
 		506A847928C7D9B300DAFBB7 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		506A847C28C7D9B300DAFBB7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		506A847E28C7D9B300DAFBB7 /* MetalShaderShowcase_macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MetalShaderShowcase_macOS.entitlements; sourceTree = "<group>"; };
+		506A848F28C7E2F600DAFBB7 /* phong_shading.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = phong_shading.metal; sourceTree = "<group>"; };
+		506A849328C7E74600DAFBB7 /* RenderableMesh.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RenderableMesh.swift; sourceTree = "<group>"; };
+		506A849928C7EFCB00DAFBB7 /* ArcballCamera.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArcballCamera.swift; sourceTree = "<group>"; };
+		506A849C28C8DC8800DAFBB7 /* TeapotRenderableMesh.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeapotRenderableMesh.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,10 +81,12 @@
 		506A845B28C7D9B200DAFBB7 /* MetalShaderShowcase Shared */ = {
 			isa = PBXGroup;
 			children = (
-				506A845C28C7D9B200DAFBB7 /* Shaders.metal */,
+				506A849228C7E71900DAFBB7 /* Meshes */,
 				506A845D28C7D9B200DAFBB7 /* Renderer.swift */,
 				506A845E28C7D9B200DAFBB7 /* ShaderTypes.h */,
 				506A845F28C7D9B300DAFBB7 /* Assets.xcassets */,
+				506A848F28C7E2F600DAFBB7 /* phong_shading.metal */,
+				506A849928C7EFCB00DAFBB7 /* ArcballCamera.swift */,
 			);
 			path = "MetalShaderShowcase Shared";
 			sourceTree = "<group>";
@@ -109,6 +120,15 @@
 				506A847E28C7D9B300DAFBB7 /* MetalShaderShowcase_macOS.entitlements */,
 			);
 			path = "MetalShaderShowcase macOS";
+			sourceTree = "<group>";
+		};
+		506A849228C7E71900DAFBB7 /* Meshes */ = {
+			isa = PBXGroup;
+			children = (
+				506A849328C7E74600DAFBB7 /* RenderableMesh.swift */,
+				506A849C28C8DC8800DAFBB7 /* TeapotRenderableMesh.swift */,
+			);
+			path = Meshes;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -215,9 +235,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				506A848128C7D9B300DAFBB7 /* Renderer.swift in Sources */,
-				506A847F28C7D9B300DAFBB7 /* Shaders.metal in Sources */,
+				506A849028C7E2F600DAFBB7 /* phong_shading.metal in Sources */,
+				506A849D28C8DC8800DAFBB7 /* TeapotRenderableMesh.swift in Sources */,
+				506A849428C7E74600DAFBB7 /* RenderableMesh.swift in Sources */,
 				506A846A28C7D9B300DAFBB7 /* GameViewController.swift in Sources */,
 				506A846828C7D9B300DAFBB7 /* AppDelegate.swift in Sources */,
+				506A849A28C7EFCB00DAFBB7 /* ArcballCamera.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -226,9 +249,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				506A848228C7D9B300DAFBB7 /* Renderer.swift in Sources */,
-				506A848028C7D9B300DAFBB7 /* Shaders.metal in Sources */,
+				506A849128C7E2F600DAFBB7 /* phong_shading.metal in Sources */,
+				506A849E28C8DC8800DAFBB7 /* TeapotRenderableMesh.swift in Sources */,
+				506A849528C7E74600DAFBB7 /* RenderableMesh.swift in Sources */,
 				506A847A28C7D9B300DAFBB7 /* GameViewController.swift in Sources */,
 				506A847828C7D9B300DAFBB7 /* AppDelegate.swift in Sources */,
+				506A849B28C7EFCB00DAFBB7 /* ArcballCamera.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -386,7 +412,7 @@
 				INFOPLIST_KEY_UIStatusBarHidden = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -417,7 +443,7 @@
 				INFOPLIST_KEY_UIStatusBarHidden = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

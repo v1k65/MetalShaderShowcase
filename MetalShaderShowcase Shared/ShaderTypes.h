@@ -1,13 +1,3 @@
-//
-//  ShaderTypes.h
-//  MetalShaderShowcase Shared
-//
-//  Created by v1k65m677 on 9/6/22.
-//
-
-//
-//  Header containing types and enum constants shared between Metal shaders and Swift/ObjC source
-//
 #ifndef ShaderTypes_h
 #define ShaderTypes_h
 
@@ -21,29 +11,38 @@ typedef NSInteger EnumBackingType;
 
 #include <simd/simd.h>
 
-typedef NS_ENUM(EnumBackingType, BufferIndex)
+typedef NS_ENUM(EnumBackingType, VertexBufferIndex)
 {
-    BufferIndexMeshPositions = 0,
-    BufferIndexMeshGenerics  = 1,
-    BufferIndexUniforms      = 2
+	VertexBufferIndexPositions = 0,
+	VertexBufferIndexNormal,
+	
+	VertexBufferIndexUniforms,
 };
 
-typedef NS_ENUM(EnumBackingType, VertexAttribute)
+typedef NS_ENUM(EnumBackingType, FragmentBufferIndex)
 {
-    VertexAttributePosition  = 0,
-    VertexAttributeTexcoord  = 1,
+	FragmentBufferIndexUniforms = 0,
 };
 
-typedef NS_ENUM(EnumBackingType, TextureIndex)
-{
-    TextureIndexColor    = 0,
+struct VertexUniforms {
+	matrix_float4x4 modelTransform;
+	matrix_float4x4 viewTransform;
+	matrix_float4x4 projectionTransform;
 };
 
-typedef struct
-{
-    matrix_float4x4 projectionMatrix;
-    matrix_float4x4 modelViewMatrix;
-} Uniforms;
+struct FragmentUniforms {
+	simd_float3 light_direction_ws;
+	simd_float3 light_color;
+	
+	simd_float3 eye_direction_ws;
+};
+
+struct PhongMaterial {
+	simd_float3 ambientColor;
+	simd_float3 diffuseColor;
+	simd_float3 specularColor;
+	float materialShine;
+};
 
 #endif /* ShaderTypes_h */
 
