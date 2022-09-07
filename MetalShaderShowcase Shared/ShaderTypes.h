@@ -16,7 +16,6 @@ typedef NS_ENUM(EnumBackingType, VertexBufferIndex)
 	VertexBufferIndexPositions = 0,
 	VertexBufferIndexNormal,
 	VertexBufferIndexUniforms,
-	VertexBufferIndexInstanceTransforms,
 };
 
 typedef NS_ENUM(EnumBackingType, FragmentBufferIndex)
@@ -25,6 +24,8 @@ typedef NS_ENUM(EnumBackingType, FragmentBufferIndex)
 };
 
 struct VertexUniforms {
+	matrix_float4x4 modelTransform;
+	matrix_float4x4 modelNormalTransform;
 	matrix_float4x4 viewTransform;
 	matrix_float4x4 projectionTransform;
 };

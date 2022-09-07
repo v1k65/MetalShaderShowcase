@@ -15,7 +15,7 @@ class Renderer: NSObject {
 	private let _renderPipelineStates: [MTLRenderPipelineState]
 	
 	private let _mesh: RenderableMesh = RenderableMesh.buildTeapot()
-	private let _instanceTransforms: [Transform]
+	private let _meshTransform = Transform()
 	
 	private let _camera = ArcballCamera()
 	
@@ -27,7 +27,6 @@ class Renderer: NSObject {
 																									 eye_direction_ws: simd_float3(0, 0, 0))
 		
 	override init() {
-		self._instanceTransforms = Self._buildInstanceTransforms()
 		self._depthState = Self._buildDepthState()
 		self._renderPipelineStates = [Self._buildPipelineState(vertexFunction: "phong_vertex_shader", fragmentFunction: "phong_fragment_shader"),
 																	Self._buildPipelineState(vertexFunction: "wood_vertex_shader", fragmentFunction: "wood_fragment_shader")]
@@ -101,26 +100,24 @@ extension Renderer: MTKViewDelegate {
 		
 		if let renderEncoder = commandBuffer.makeRenderCommandEncoder(descriptor: renderPassDescriptor) {
 			renderEncoder.setFrontFacing(.counterClockwise)
-			renderEncoder.setRenderPipelineState(_renderPipelineStates[1])// TODO _renderPipelineIdx])
+			renderEncoder.setRenderPipelineState(_renderPipelineStates[_renderPipelineIdx])
 			renderEncoder.setDepthStencilState(_depthState)
 			
 			_vertexUniforms.viewTransform = _camera.buildTransform()
+			_vertexUniforms.modelTransform = _meshTransform.transform
+			_vertexUniforms.modelNormalTransform = simd_transpose(simd_inverse(_vertexUniforms.modelTransform))
 			_fragmentUniforms.eye_direction_ws = simd_normalize(_vertexUniforms.viewTransform.inverse[3].xyz)
-			
-			let instanceTransforms = _instanceTransforms.map { $0.transform }
-			
+						
 			renderEncoder.pushDebugGroup("Rendering \(_mesh.name)")
 			renderEncoder.setVertexBuffer(_mesh.positionBuffer, offset: 0, index: VertexBufferIndex.positions.rawValue)
 			renderEncoder.setVertexBuffer(_mesh.normalBuffer, offset: 0, index: VertexBufferIndex.normal.rawValue)
 			renderEncoder.setVertexBytes(&_vertexUniforms, length: MemoryLayout<VertexUniforms>.stride, index: VertexBufferIndex.uniforms.rawValue)
-			renderEncoder.setVertexBytes(instanceTransforms, length: MemoryLayout<simd_float4x4>.stride * _instanceTransforms.count, index: VertexBufferIndex.instanceTransforms.rawValue)
 			renderEncoder.setFragmentBytes(&_fragmentUniforms, length: MemoryLayout<FragmentUniforms>.stride, index: FragmentBufferIndex.uniforms.rawValue)
 			renderEncoder.drawIndexedPrimitives(type: .triangleStrip,
 																					indexCount: _mesh.indexCnt,
 																					indexType: .uint32,
 																					indexBuffer: _mesh.indexBuffer,
-																					indexBufferOffset: 0,
-																					instanceCount: _instanceTransforms.count)
+																					indexBufferOffset: 0)
 			renderEncoder.popDebugGroup()
 			
 			renderEncoder.endEncoding()

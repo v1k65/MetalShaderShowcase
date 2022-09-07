@@ -14,22 +14,19 @@ vertex PhongInOut wood_vertex_shader(
 		const device packed_float3* positions [[ buffer(VertexBufferIndexPositions) ]],
 		const device packed_float3* normals [[ buffer(VertexBufferIndexNormal) ]],
 				
-		constant simd_float4x4 *instance_transforms [[ buffer(VertexBufferIndexInstanceTransforms) ]],
 		constant VertexUniforms &uniforms [[ buffer(VertexBufferIndexUniforms) ]],
 															 
-		unsigned int instance_id [[ instance_id ]],
 		unsigned int vertex_id [[ vertex_id ]])
 {
 	float4 position = float4(positions[vertex_id], 1.0);
 	float4 normal = float4(normals[vertex_id], 0);
 	
-	float4x4 model_transform = instance_transforms[instance_id];
-	float4x4 mvp_transform = uniforms.projectionTransform * uniforms.viewTransform * model_transform;
+	float4x4 mvp_transform = uniforms.projectionTransform * uniforms.viewTransform * uniforms.modelTransform;
 	
 	return PhongInOut {
 		.position_cs = mvp_transform * position,
 		.position_ms = position.xyz,
-		.normal_ws = (model_transform * normal).xyz,
+		.normal_ws = (uniforms.modelNormalTransform * normal).xyz,
 	};
 }
 	
