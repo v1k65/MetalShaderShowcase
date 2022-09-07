@@ -14,29 +14,33 @@ struct PhongInOut {
 vertex PhongInOut phong_vertex_shader(
     const device packed_float3* positions [[ buffer(VertexBufferIndexPositions) ]],
 		const device packed_float3* normals [[ buffer(VertexBufferIndexNormal) ]],
-															 
+				
+		constant simd_float4x4 *instance_transforms [[ buffer(VertexBufferIndexInstanceTransforms) ]],
 	  constant VertexUniforms &uniforms [[ buffer(VertexBufferIndexUniforms) ]],
 															 
+		unsigned int instance_id [[ instance_id ]],
 		unsigned int vertex_id [[ vertex_id ]])
 {
 	float4 position = float4(positions[vertex_id], 1.0);
 	float4 normal = float4(normals[vertex_id], 0);
 	
-	float4x4 mvp_transform = uniforms.projectionTransform * uniforms.viewTransform * uniforms.modelTransform;
+	float4x4 model_transform = instance_transforms[instance_id];
+	float4x4 mvp_transform = uniforms.projectionTransform * uniforms.viewTransform * model_transform;
 	
 	return PhongInOut {
 		.position_cs = mvp_transform * position,
-		.normal_ws = (uniforms.modelTransform * normal).xyz,
+		.normal_ws = (model_transform * normal).xyz,
 	};
 }
 
 constant PhongMaterial material {
-	.ambientColor = simd_float3(0.18, 0.18, 0.18),
-	.diffuseColor = simd_float3(0.4, 0.4, 0.4),
+	.ambientColor = simd_float3(0.04, 0.02, 0.07),
+	.diffuseColor = simd_float3(0.4, 0.2, 0.7),
 	.specularColor = simd_float3(1.0, 1.0, 1.0),
   .materialShine = 50,
 };
 
+	
 fragment float4 phong_fragment_shader(
     PhongInOut in [[stage_in]],
 	  constant FragmentUniforms &uniforms [[ buffer(FragmentBufferIndexUniforms) ]])
@@ -50,5 +54,7 @@ fragment float4 phong_fragment_shader(
 	float e_dot_r = saturate(dot(uniforms.eye_direction_ws, r));
 	float3 specular_color = material.specularColor * uniforms.light_color * pow(e_dot_r, material.materialShine);
 	
-	return float4(ambientColor + diffuse_color + specular_color, 1);
+	float3 color = ambientColor + diffuse_color + specular_color;
+	
+	return float4(color, 1);
 }

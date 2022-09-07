@@ -3077,7 +3077,6 @@ extension RenderableMesh {
 		let indexBuffer = Renderer.device.makeBuffer(bytes: indices, length: MemoryLayout<Int32>.stride * indices.count)!
 																 
 		return RenderableMesh(name: "cube",
-													position: simd_float3(0, 0, 0),
 													positionBuffer: positionBuffer,
 													normalBuffer: normalBuffer,
 													indexCnt: indices.count,

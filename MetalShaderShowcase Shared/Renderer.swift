@@ -14,7 +14,9 @@ class Renderer: NSObject {
 	private let _depthState: MTLDepthStencilState
 	private let _renderPipelineStates: [MTLRenderPipelineState]
 	
-	private let _meshes: [RenderableMesh] = [RenderableMesh.buildTeapot()]
+	
+	private let _mesh: RenderableMesh = RenderableMesh.buildTeapot()
+	private let _instanceTransforms: [Transform]
 	
 	private let _camera = ArcballCamera()
 	
@@ -24,6 +26,7 @@ class Renderer: NSObject {
 																									 eye_direction_ws: simd_float3(0, 0, 0))
 		
 	override init() {
+		self._instanceTransforms = Self._buildInstanceTransforms()
 		self._depthState = Self._buildDepthState()
 		self._renderPipelineStates = [Self._buildPipelineState(vertexFunction: "phong_vertex_shader", fragmentFunction: "phong_fragment_shader"),]
 				
@@ -46,6 +49,24 @@ class Renderer: NSObject {
 		depthStateDescriptor.depthCompareFunction = MTLCompareFunction.less
 		depthStateDescriptor.isDepthWriteEnabled = true
 		return device.makeDepthStencilState(descriptor:depthStateDescriptor)!
+	}
+	
+	static func _buildInstanceTransforms(cnt: Int = 10) -> [Transform] {
+		var transforms = [Transform]()
+		
+		for idx in 0..<cnt {
+			let transform = Transform()
+			
+			if idx > 0 {
+				let z = Float.random(in: 0...10)
+				let x = Float.random(in: -z...z)
+				transform.position = simd_float3(x * 0.5, 0, z)
+			}
+			
+			transforms.append(transform)
+		}
+		
+		return transforms
 	}
 	
 	static func _buildPipelineState(vertexFunction: String, fragmentFunction: String) -> MTLRenderPipelineState {
@@ -99,20 +120,21 @@ extension Renderer: MTKViewDelegate {
 			_vertexUniforms.viewTransform = _camera.buildTransform()
 			_fragmentUniforms.eye_direction_ws = simd_normalize(_vertexUniforms.viewTransform.inverse[3].xyz)
 			
-			for mesh in _meshes {
-				_vertexUniforms.modelTransform = mesh.transform
-
-				renderEncoder.pushDebugGroup("Rendering \(mesh.name)")
-				
-				renderEncoder.setVertexBuffer(mesh.positionBuffer, offset: 0, index: VertexBufferIndex.positions.rawValue)
-				renderEncoder.setVertexBuffer(mesh.normalBuffer, offset: 0, index: VertexBufferIndex.normal.rawValue)
-				renderEncoder.setVertexBytes(&_vertexUniforms, length: MemoryLayout<VertexUniforms>.stride, index: VertexBufferIndex.uniforms.rawValue)
-				
-				renderEncoder.setFragmentBytes(&_fragmentUniforms, length: MemoryLayout<FragmentUniforms>.stride, index: FragmentBufferIndex.uniforms.rawValue)
-				
-				renderEncoder.drawIndexedPrimitives(type: .triangleStrip, indexCount: mesh.indexCnt, indexType: .uint32, indexBuffer: mesh.indexBuffer, indexBufferOffset: 0)
-				renderEncoder.popDebugGroup()
-			}
+			let instanceTransforms = _instanceTransforms.map { $0.transform }
+			
+			renderEncoder.pushDebugGroup("Rendering \(_mesh.name)")
+			renderEncoder.setVertexBuffer(_mesh.positionBuffer, offset: 0, index: VertexBufferIndex.positions.rawValue)
+			renderEncoder.setVertexBuffer(_mesh.normalBuffer, offset: 0, index: VertexBufferIndex.normal.rawValue)
+			renderEncoder.setVertexBytes(&_vertexUniforms, length: MemoryLayout<VertexUniforms>.stride, index: VertexBufferIndex.uniforms.rawValue)
+			renderEncoder.setVertexBytes(instanceTransforms, length: MemoryLayout<simd_float4x4>.stride * _instanceTransforms.count, index: VertexBufferIndex.instanceTransforms.rawValue)
+			renderEncoder.setFragmentBytes(&_fragmentUniforms, length: MemoryLayout<FragmentUniforms>.stride, index: FragmentBufferIndex.uniforms.rawValue)
+			renderEncoder.drawIndexedPrimitives(type: .triangleStrip,
+																					indexCount: _mesh.indexCnt,
+																					indexType: .uint32,
+																					indexBuffer: _mesh.indexBuffer,
+																					indexBufferOffset: 0,
+																					instanceCount: _instanceTransforms.count)
+			renderEncoder.popDebugGroup()
 			
 			renderEncoder.endEncoding()
 		}
@@ -129,7 +151,7 @@ extension Renderer: MTKViewDelegate {
 		_vertexUniforms.projectionTransform = Self._buildPerspectiveTransform(fovyDegree: 65.0,
 																																					aspect: Float(size.width / size.height),
 																																					near: 0.1,
-																																					far: 100.0)
+																																					far: 10.0)
 	}
 }
 

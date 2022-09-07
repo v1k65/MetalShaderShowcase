@@ -28,6 +28,8 @@
 		506A849B28C7EFCB00DAFBB7 /* ArcballCamera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506A849928C7EFCB00DAFBB7 /* ArcballCamera.swift */; };
 		506A849D28C8DC8800DAFBB7 /* TeapotRenderableMesh.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506A849C28C8DC8800DAFBB7 /* TeapotRenderableMesh.swift */; };
 		506A849E28C8DC8800DAFBB7 /* TeapotRenderableMesh.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506A849C28C8DC8800DAFBB7 /* TeapotRenderableMesh.swift */; };
+		50F896EC28C91A0200B34B9B /* Transform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F896EB28C91A0200B34B9B /* Transform.swift */; };
+		50F896ED28C91A0200B34B9B /* Transform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F896EB28C91A0200B34B9B /* Transform.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +50,7 @@
 		506A849328C7E74600DAFBB7 /* RenderableMesh.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RenderableMesh.swift; sourceTree = "<group>"; };
 		506A849928C7EFCB00DAFBB7 /* ArcballCamera.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArcballCamera.swift; sourceTree = "<group>"; };
 		506A849C28C8DC8800DAFBB7 /* TeapotRenderableMesh.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeapotRenderableMesh.swift; sourceTree = "<group>"; };
+		50F896EB28C91A0200B34B9B /* Transform.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transform.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +90,7 @@
 				506A845F28C7D9B300DAFBB7 /* Assets.xcassets */,
 				506A848F28C7E2F600DAFBB7 /* phong_shading.metal */,
 				506A849928C7EFCB00DAFBB7 /* ArcballCamera.swift */,
+				50F896EB28C91A0200B34B9B /* Transform.swift */,
 			);
 			path = "MetalShaderShowcase Shared";
 			sourceTree = "<group>";
@@ -240,6 +244,7 @@
 				506A849428C7E74600DAFBB7 /* RenderableMesh.swift in Sources */,
 				506A846A28C7D9B300DAFBB7 /* GameViewController.swift in Sources */,
 				506A846828C7D9B300DAFBB7 /* AppDelegate.swift in Sources */,
+				50F896EC28C91A0200B34B9B /* Transform.swift in Sources */,
 				506A849A28C7EFCB00DAFBB7 /* ArcballCamera.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -254,6 +259,7 @@
 				506A849528C7E74600DAFBB7 /* RenderableMesh.swift in Sources */,
 				506A847A28C7D9B300DAFBB7 /* GameViewController.swift in Sources */,
 				506A847828C7D9B300DAFBB7 /* AppDelegate.swift in Sources */,
+				50F896ED28C91A0200B34B9B /* Transform.swift in Sources */,
 				506A849B28C7EFCB00DAFBB7 /* ArcballCamera.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
