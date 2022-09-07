@@ -30,6 +30,8 @@
 		506A849E28C8DC8800DAFBB7 /* TeapotRenderableMesh.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506A849C28C8DC8800DAFBB7 /* TeapotRenderableMesh.swift */; };
 		50F896EC28C91A0200B34B9B /* Transform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F896EB28C91A0200B34B9B /* Transform.swift */; };
 		50F896ED28C91A0200B34B9B /* Transform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F896EB28C91A0200B34B9B /* Transform.swift */; };
+		50F896F028C9257E00B34B9B /* wood_shader.metal in Sources */ = {isa = PBXBuildFile; fileRef = 50F896EF28C9257E00B34B9B /* wood_shader.metal */; };
+		50F896F128C9257E00B34B9B /* wood_shader.metal in Sources */ = {isa = PBXBuildFile; fileRef = 50F896EF28C9257E00B34B9B /* wood_shader.metal */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -51,6 +53,7 @@
 		506A849928C7EFCB00DAFBB7 /* ArcballCamera.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArcballCamera.swift; sourceTree = "<group>"; };
 		506A849C28C8DC8800DAFBB7 /* TeapotRenderableMesh.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeapotRenderableMesh.swift; sourceTree = "<group>"; };
 		50F896EB28C91A0200B34B9B /* Transform.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transform.swift; sourceTree = "<group>"; };
+		50F896EF28C9257E00B34B9B /* wood_shader.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = wood_shader.metal; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,11 +87,11 @@
 		506A845B28C7D9B200DAFBB7 /* MetalShaderShowcase Shared */ = {
 			isa = PBXGroup;
 			children = (
+				50F896EE28C9256700B34B9B /* Shaders */,
 				506A849228C7E71900DAFBB7 /* Meshes */,
 				506A845D28C7D9B200DAFBB7 /* Renderer.swift */,
 				506A845E28C7D9B200DAFBB7 /* ShaderTypes.h */,
 				506A845F28C7D9B300DAFBB7 /* Assets.xcassets */,
-				506A848F28C7E2F600DAFBB7 /* phong_shading.metal */,
 				506A849928C7EFCB00DAFBB7 /* ArcballCamera.swift */,
 				50F896EB28C91A0200B34B9B /* Transform.swift */,
 			);
@@ -133,6 +136,15 @@
 				506A849C28C8DC8800DAFBB7 /* TeapotRenderableMesh.swift */,
 			);
 			path = Meshes;
+			sourceTree = "<group>";
+		};
+		50F896EE28C9256700B34B9B /* Shaders */ = {
+			isa = PBXGroup;
+			children = (
+				506A848F28C7E2F600DAFBB7 /* phong_shading.metal */,
+				50F896EF28C9257E00B34B9B /* wood_shader.metal */,
+			);
+			path = Shaders;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -238,6 +250,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				50F896F028C9257E00B34B9B /* wood_shader.metal in Sources */,
 				506A848128C7D9B300DAFBB7 /* Renderer.swift in Sources */,
 				506A849028C7E2F600DAFBB7 /* phong_shading.metal in Sources */,
 				506A849D28C8DC8800DAFBB7 /* TeapotRenderableMesh.swift in Sources */,
@@ -253,6 +266,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				50F896F128C9257E00B34B9B /* wood_shader.metal in Sources */,
 				506A848228C7D9B300DAFBB7 /* Renderer.swift in Sources */,
 				506A849128C7E2F600DAFBB7 /* phong_shading.metal in Sources */,
 				506A849E28C8DC8800DAFBB7 /* TeapotRenderableMesh.swift in Sources */,

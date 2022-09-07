@@ -14,12 +14,13 @@ class Renderer: NSObject {
 	private let _depthState: MTLDepthStencilState
 	private let _renderPipelineStates: [MTLRenderPipelineState]
 	
-	
 	private let _mesh: RenderableMesh = RenderableMesh.buildTeapot()
 	private let _instanceTransforms: [Transform]
 	
 	private let _camera = ArcballCamera()
 	
+	private var _frameIdx: Int = 0
+	private var _renderPipelineIdx: Int = 0
 	private var _vertexUniforms = VertexUniforms()
 	private var _fragmentUniforms = FragmentUniforms(light_direction_ws: simd_normalize(simd_float3(-1, 0.5, -1)),
 																									 light_color: simd_float3(1, 1, 1),
@@ -28,7 +29,8 @@ class Renderer: NSObject {
 	override init() {
 		self._instanceTransforms = Self._buildInstanceTransforms()
 		self._depthState = Self._buildDepthState()
-		self._renderPipelineStates = [Self._buildPipelineState(vertexFunction: "phong_vertex_shader", fragmentFunction: "phong_fragment_shader"),]
+		self._renderPipelineStates = [Self._buildPipelineState(vertexFunction: "phong_vertex_shader", fragmentFunction: "phong_fragment_shader"),
+																	Self._buildPipelineState(vertexFunction: "wood_vertex_shader", fragmentFunction: "wood_fragment_shader")]
 				
 		super.init()
 	}
@@ -80,33 +82,18 @@ class Renderer: NSObject {
 		
 		return try! device.makeRenderPipelineState(descriptor: pipelineDescriptor)
 	}
-	
-	
-	/*
-	 class func loadTexture(device: MTLDevice,
-	 textureName: String) throws -> MTLTexture {
-	 /// Load texture data with optimal parameters for sampling
-	 
-	 let textureLoader = MTKTextureLoader(device: device)
-	 
-	 let textureLoaderOptions = [
-	 MTKTextureLoader.Option.textureUsage: NSNumber(value: MTLTextureUsage.shaderRead.rawValue),
-	 MTKTextureLoader.Option.textureStorageMode: NSNumber(value: MTLStorageMode.`private`.rawValue)
-	 ]
-	 
-	 return try textureLoader.newTexture(name: textureName,
-	 scaleFactor: 1.0,
-	 bundle: nil,
-	 options: textureLoaderOptions)
-	 
-	 } */
-	
 }
 
 // MARK: - MTKViewDelegate
 extension Renderer: MTKViewDelegate {
 	
 	func draw(in view: MTKView) {
+		_frameIdx += 1
+		
+		if _frameIdx % 150 == 0 {
+			_renderPipelineIdx = (_renderPipelineIdx + 1) % _renderPipelineStates.count
+		}
+		
 		guard let commandBuffer = Self.commandQueue.makeCommandBuffer(),
 					let renderPassDescriptor = view.currentRenderPassDescriptor else {
 			return
@@ -114,7 +101,7 @@ extension Renderer: MTKViewDelegate {
 		
 		if let renderEncoder = commandBuffer.makeRenderCommandEncoder(descriptor: renderPassDescriptor) {
 			renderEncoder.setFrontFacing(.counterClockwise)
-			renderEncoder.setRenderPipelineState(_renderPipelineStates[0]) // TODO: Iterate
+			renderEncoder.setRenderPipelineState(_renderPipelineStates[1])// TODO _renderPipelineIdx])
 			renderEncoder.setDepthStencilState(_depthState)
 			
 			_vertexUniforms.viewTransform = _camera.buildTransform()
