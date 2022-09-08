@@ -32,6 +32,7 @@
 		50F896ED28C91A0200B34B9B /* Transform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F896EB28C91A0200B34B9B /* Transform.swift */; };
 		50F896F028C9257E00B34B9B /* wood_shader.metal in Sources */ = {isa = PBXBuildFile; fileRef = 50F896EF28C9257E00B34B9B /* wood_shader.metal */; };
 		50F896F128C9257E00B34B9B /* wood_shader.metal in Sources */ = {isa = PBXBuildFile; fileRef = 50F896EF28C9257E00B34B9B /* wood_shader.metal */; };
+		50F896F328CA078A00B34B9B /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 50F896F228CA078A00B34B9B /* README.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,6 +55,7 @@
 		506A849C28C8DC8800DAFBB7 /* TeapotRenderableMesh.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeapotRenderableMesh.swift; sourceTree = "<group>"; };
 		50F896EB28C91A0200B34B9B /* Transform.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transform.swift; sourceTree = "<group>"; };
 		50F896EF28C9257E00B34B9B /* wood_shader.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = wood_shader.metal; sourceTree = "<group>"; };
+		50F896F228CA078A00B34B9B /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +79,7 @@
 		506A845628C7D9B200DAFBB7 = {
 			isa = PBXGroup;
 			children = (
+				50F896F228CA078A00B34B9B /* README.md */,
 				506A845B28C7D9B200DAFBB7 /* MetalShaderShowcase Shared */,
 				506A846628C7D9B300DAFBB7 /* MetalShaderShowcase iOS */,
 				506A847628C7D9B300DAFBB7 /* MetalShaderShowcase macOS */,
@@ -228,6 +231,7 @@
 			files = (
 				506A848328C7D9B300DAFBB7 /* ShaderTypes.h in Resources */,
 				506A846D28C7D9B300DAFBB7 /* Main.storyboard in Resources */,
+				50F896F328CA078A00B34B9B /* README.md in Resources */,
 				506A848528C7D9B300DAFBB7 /* Assets.xcassets in Resources */,
 				506A847028C7D9B300DAFBB7 /* LaunchScreen.storyboard in Resources */,
 			);
